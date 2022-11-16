@@ -42,13 +42,13 @@
         android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="350dp"
-        android:scaleType="centerCrop"
         android:layout_marginTop="40dp"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnGallery"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:src="@drawable/image_no_supported"/>
 
     <Button
         android:id="@+id/btngotoGallery"

@@ -18,7 +18,6 @@ class MyDBHandler(context: Context)
 
     override fun onCreate(db: SQLiteDatabase?) {
         db!!.execSQL("CREATE TABLE images(id INTEGER PRIMARY KEY AUTOINCREMENT, image BLOB NOT NULL)")
-
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, p1: Int, p2: Int) {
@@ -35,22 +34,22 @@ class MyDBHandler(context: Context)
         return writableDatabase.insert("images", null, cv ) > 0
     }
 
-fun getAllImages(): ArrayList<Image>{
-        val arr = arrayListOf<Image>()
-        val cursor = readableDatabase.rawQuery("SELECT * FROM images", null)
-        if (cursor.count  > 0 ){
-                cursor.moveToFirst()
-                while (!cursor.isAfterLast){
-                    val id = cursor.getInt(0)
-                    val byteArray = cursor.getBlob(1)
-                    val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
-                    val image = Image(id, bitmap)
-                    arr.add(image)
-                    cursor.moveToNext()
+    fun getAllImages(): ArrayList<Image>{
+            val arr = arrayListOf<Image>()
+            val cursor = readableDatabase.rawQuery("SELECT * FROM  images", null)
+                if (cursor.count  > 0 ){
+                    cursor.moveToFirst()
+                    while (!cursor.isAfterLast){
+                        val id = cursor.getInt(0)
+                        val byteArray = cursor.getBlob(1)
+                        val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+                        val image = Image(id, bitmap)
+                        arr.add(image)
+                        cursor.moveToNext()
+                    }
                 }
-            }
-        cursor.close()
-        return  arr
+            cursor.close()
+            return  arr
     }
 }
 
